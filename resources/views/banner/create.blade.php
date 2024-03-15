@@ -1,38 +1,41 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div>
+        <h3 class="fw-bold">CREATE BANNER</h3>
+    </div>
     <form action="{{ route('admin.banner.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group ">
-            <label for="">Title</label>
+            <label for="" class="fw-semibold">Tên:</label>
             <input type="text" name="name" class="form-control">
         </div>
         <div class="form-group ">
-            <label for="">Description</label>
+            <label for="" class="fw-semibold">Mô Tả:</label>
             <input type="text" name="description" class="form-control">
         </div>
         <div class="form-group ">
-            <label for="">Link</label>
+            <label for="" class="fw-semibold">Link:</label>
             <input type="text" name="url" class="form-control">
         </div>
         <div class="form-group ">
-            <label for="">Banner Image</label>
+            <label for="" class="fw-semibold">Ảnh:</label>
             <input type="file" name="image" class="form-control">
         </div>
         <div class="form-group">
-            <label for="menu">Sắp Xếp</label>
+            <label for="menu" class="fw-semibold">Sắp Xếp:</label>
             <input type="number" name="sort_by" value="1" class="form-control">
         </div>
 
         <div class="form-group mt-3">
-            <label>Kích Hoạt</label>
-            <div class="custom-control custom-radio">
+            <label class="fw-semibold">Kích Hoạt:</label>
+            <div class="custom-control custom-radio ms-3">
                 <input class="custom-control-input" value="1" type="radio" id="active" name="active"
                     checked="">
                 <label for="active" class="custom-control-label">Có</label>
             </div>
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio ms-3">
                 <input class="custom-control-input" value="0" type="radio" id="no_active" name="active">
                 <label for="no_active" class="custom-control-label">Không</label>
             </div>

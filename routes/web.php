@@ -5,9 +5,11 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\UserController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,12 +23,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     // $admin = User::select()->where('is_admin', 1)->get();
     // dd($admin);
     return view('welcome');
 });
-
 
 Route::group([], function () {
     Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
@@ -34,7 +37,7 @@ Route::group([], function () {
     Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
 });
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     // dashboard
     Route::get('/', [HomeController::class, 'index'])->name('admin.home');
 
@@ -83,4 +86,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('product-image/{id}/create', [ProductImageController::class, 'create'])->name('admin.product-image.create');
     Route::post('product-image/{id}', [ProductImageController::class, 'store'])->name('admin.product-image.store');
     Route::delete('product-image/{id}', [ProductImageController::class, 'destroy'])->name('admin.product-image.delete');
+
+    // order
+    Route::get('order', [OrderController::class, 'index'])->name('admin.order.index');
+    Route::post('order/{id}', [OrderController::class, 'store'])->name('admin.order.store');
+    Route::get('order/{id}/edit', [OrderController::class, 'edit'])->name('admin.order.edit');
+    Route::put('order/{id}', [OrderController::class, 'update'])->name('admin.order.update');
 });

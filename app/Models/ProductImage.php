@@ -11,8 +11,10 @@ class ProductImage extends Model
 
     protected $tatble = 'product_details';
 
-    protected $fillable =[
-        'product_id',
-        'image'
-    ];
+    protected $fillable = ['product_id', 'image'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

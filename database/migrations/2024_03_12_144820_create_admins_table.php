@@ -22,6 +22,16 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        DB::table('admins')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('123456'),
+            'phone' => '0123456789',
+            'address' => '459 Ton Duc Thang, Q.Lien Chieu, Da Nang',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

@@ -88,9 +88,12 @@
                     <a class="nav-link {{ strpos(url()->current(), 'admin/product') !== false ? 'active' : '' }}"
                         href="{{ route('admin.product.index') }}"><i class="fa-solid fa-list me-2"></i>Products</a>
                 </li>
-                {{-- <li class="nav-item">
-                <a class="nav-link {{ strpos(url()->current(), 'admin/order') !== false ? 'active' : '' }}" href="{{ route('admin.order.index') }}"><i class="fa-solid fa-inbox me-2"></i>Orders</a>
-            </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link {{ strpos(url()->current(), 'admin/order') !== false ? 'active' : '' }}" href="{{ route('admin.order.index') }}">
+                        <i class="fa-solid fa-cube me-2"></i>
+                        Orders
+                    </a>
+                </li>
             </ul>
         </div>
 

@@ -9,38 +9,40 @@
                     <h6 class="alert alert-success">{{ session('status') }}</h6>
                 @endif
                 <div class="card-body">
-
-                    <form action="{{ url('admin/product/update/' . $product->id) }}" method="POST"
+                    <div>
+                        <h3 class="fw-bold">EDIT PRODUCT</h3>
+                    </div>
+                    <form action="{{ url('admin/product/' . $product->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group ">
-                            <label for="">Title</label>
+                            <label for="" class="fw-semibold">Name:</label>
                             <input type="text" name="name" value="{{ $product->name }}" class="form-control">
                         </div>
                         <div class="form-group ">
-                            <label for="">Description</label>
+                            <label for="" class="fw-semibold">Description:</label>
                             <input type="text" name="description" value="{{ $product->description }}"
                                 class="form-control">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="">banner Image</label>
+                            <label for="" class="fw-semibold">banner Image:</label>
                             <input type="file" name="image" class="form-control">
                             <img src="{{ asset('uploads/Product/' . $product->image) }}" width="70px" height="70px"
                                 alt="Image">
                         </div>
                         <div class="form-group ">
-                            <label for="">Price</label>
+                            <label for="" class="fw-semibold">Price:</label>
                             <input type="number" name="price" value="{{ $product->price }}" class="form-control">
                         </div>
                         <div class="form-group ">
-                            <label for="">Price_sale</label>
+                            <label for="" class="fw-semibold">Price Sale:</label>
                             <input type="number" name="price_sale"value={{ $product->price_sale }} class="form-control">
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Danh Mục</label>
+                                <label class="fw-semibold">Danh Mục:</label>
                                 <select class="form-control" name="category_id">
                                     @foreach ($category as $key => $category)
                                         <option value="{{ $category->id }}"
@@ -53,16 +55,16 @@
                         <div class="form-group">
 
                             <div class="form-group mt-2">
-                                <label>Kích Hoạt</label>
-                                <div class="custom-control custom-radio">
+                                <label class="fw-semibold">Kích Hoạt:</label>
+                                <div class="custom-control custom-radio ms-3">
                                     <input class="custom-control-input" value="1" type="radio" id="active"
                                         name="active" {{ $product->active == 1 ? 'checked' : '' }}>
                                     <label for="active" class="custom-control-label">Có</label>
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" value="0" type="radio" id="no_active"
+                                <div class="custom-control custom-radio ms-3">
+                                    <input class="custom-control-input" value="0" type="radio" id="active"
                                         name="active" {{ $product->active == 0 ? 'checked' : '' }}>
-                                    <label for="no_active" class="custom-control-label">Không</label>
+                                    <label for="active" class="custom-control-label">Không</label>
                                 </div>
                             </div>
                             <div class="form-group mt-3">

@@ -17,7 +17,7 @@ class ProductImageController extends Controller
     public function index($id)
     {
         $product_image = ProductImage::select()->where('product_id',$id)->get();
-        $product = Product::select()->where('id',$id)->get();
+        $product = Product::select()->where('id',$id)->first();
         return view('product-image.list',compact('product_image','id', 'product'));
     }
 
@@ -29,9 +29,11 @@ class ProductImageController extends Controller
     public function create($id)
     {
         $product_image = ProductImage::all();
+        $product = Product::select()->where('id',$id)->first();
         return view('product-image.create', [
             'id' => $id,
-            'product_image' => $product_image
+            'product_image' => $product_image,
+            'product' => $product
         ]);
     }
 

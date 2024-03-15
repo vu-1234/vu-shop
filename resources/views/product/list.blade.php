@@ -7,6 +7,9 @@
         ];
     @endphp
     <div>
+        <h3 class="fw-bold">LIST PRODUCTS</h3>
+    </div>
+    <div class="mt-3">
         <a href="{{ route('admin.product.create') }}" class="btn btn-success">Create</a>
     </div>
     <table class="table">
@@ -17,10 +20,10 @@
                 <th>Tiêu Đề</th>
                 <th>Ảnh</th>
                 <th>Giá tiền</th>
+                <th>Giá tiền đã giảm</th>
                 <th>Trang Thái</th>
-                <th>Chi tiết</th>
                 <th>Chi tiết ảnh</th>
-                <th style="width: 100px"> </th>
+                <th style="width: 100px">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +35,7 @@
                         <img src="{{ asset('/uploads/product/' . $product->image) }}" height="40px">
                     </td>
                     <td>{{ number_format($product->price) }} </td>
+                    <td>{{ number_format($product->price_sale) }}</td>
                     <td>{{ $active[$product->active] }}</td>
                     <td>
                         <a href="{{ route('admin.product-image.index', ['id' => $product->id]) }}" class="btn btn-primary btn-sm">Image</a>

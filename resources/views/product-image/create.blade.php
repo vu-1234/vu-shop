@@ -1,10 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div>
+        <h3 class="fw-bold">CREATE IMAGE PRODUCT ( {{ $product->name }} )</h3>
+    </div>
     <form action="{{ route('admin.product-image.store', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="">Image</label>
+            <label for="" class="fw-semibold">Image:</label>
             <input type="file" name="image[]" class="form-control" multiple>
         </div>
 

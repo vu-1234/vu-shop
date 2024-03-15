@@ -10,19 +10,21 @@
 
     @endphp
     <div>
+        <h3 class="fw-bold">LIST BANNERS</h3>
+    </div>
+    <div class="mt-3">
         <a href="{{ route('admin.banner.create') }}" class="btn btn-success">Create</a>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th style="width: 50px">ID</th>
-                <th>Tiêu Đề</th>
+                <th>Tên</th>
                 <th>Link</th>
                 <th>Ảnh</th>
                 <th>Thứ tự</th>
                 <th>Trạng Thái</th>
-                <th>Cập Nhật</th>
-                <th style="width: 100px"> </th>
+                <th style="width: 100px">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -39,15 +41,14 @@
                     <td>{{ $active[$banner->active] }}</td>
 
                     <td>
-                        <a href="{{ route('admin.banner.edit', ['id' => $banner->id]) }}" class="btn btn-primary btn-sm">Edit</a>
-                    </td>
-
-                        <td>
-                        <form action="{{ route('admin.banner.delete', ['id' => $banner->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        <div class="d-flex">
+                            <a href="{{ route('admin.banner.edit', ['id' => $banner->id]) }}" class="btn btn-primary btn-sm me-3">Edit</a>
+                            <form action="{{ route('admin.banner.delete', ['id' => $banner->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('content')
     <div>
+        <h3 class="fw-bold">LIST ADMINS</h3>
+    </div>
+    <div class="mt-3">
         <a href="{{ route('admin.admin.create') }}" class="btn btn-success">Create</a>
     </div>
     <table class="table">
@@ -10,7 +13,9 @@
                 <th style="width: 50px">ID</th>
                 <th>Tên</th>
                 <th>Email</th>
-                <th style="width: 100px"> </th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th style="width: 100px">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +24,8 @@
                     <td>{{ $admin->id }}</td>
                     <td>{{ $admin->name }}</td>
                     <td>{{ $admin->email }}</td>
+                    <td>{{ $admin->phone }}</td>
+                    <td>{{ $admin->address }}</td>
                     <td>
                         <div class="d-flex">
                             <a href="{{ route('admin.admin.edit', ['id' => $admin->id]) }}" class="btn btn-primary btn-sm me-3">Edit</a>

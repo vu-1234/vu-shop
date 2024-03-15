@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
-            $table->string('sex');
+            $table->integer('gender');
             $table->date('date');
             $table->string('district');
             $table->string('ward');
@@ -27,17 +27,6 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345678'),
-            'phone' => '0823876869',
-            'address' => '450 Ton Duc Thang',
-            'is_admin' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
     }
 
     /**

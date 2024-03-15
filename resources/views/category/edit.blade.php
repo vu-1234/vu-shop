@@ -1,22 +1,25 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div>
+        <h3 class="fw-bold">EDIT CATEGORY</h3>
+    </div>
     <form action="{{ route('admin.category.update', ['id' => $category->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
         <div class="form-group ">
-            <label for="">Title</label>
+            <label for="" class="fw-semibold">Tên:</label>
             <input type="text" name="name" value="{{ $category->name }}" class="form-control">
         </div>
         <div class="form-group mt-3">
-            <label>Kích Hoạt</label>
-            <div class="custom-control custom-radio">
+            <label class="fw-semibold">Kích Hoạt:</label>
+            <div class="custom-control custom-radio ms-3">
                 <input class="custom-control-input" value="1" type="radio" id="active" name="active"
                     name="active" {{ $category->active == 1 ? 'checked' : '' }}>
                 <label for="active" class="custom-control-label">Có</label>
             </div>
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio ms-3">
                 <input class="custom-control-input" value="0" type="radio" id="no_active" name="active"
                     name="active" {{ $category->active == 0 ? 'checked' : '' }}>
                 <label for="no_active" class="custom-control-label">Không</label>
