@@ -58,7 +58,7 @@
             {{-- card product --}}
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="col-4 mb-4">
+                    <div class="col-3 mb-4">
                         <div class="thumb-wrapper">
                             <span class="wish-icon"><i class="fa fa-heart-o"></i></span>
                             <div class="img-box">

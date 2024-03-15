@@ -8,7 +8,7 @@
     <div class="carousel-inner">
         @foreach ($banners as $banner)
             <div class="carousel-item active" data-bs-interval="10000">
-                <img src="{{ asset('uploads/Banner/' . $banner->image) }}" class="d-block w-100" style="height: 400px;" alt="...">
+                <img src="{{ asset('uploads/Banner/' . $banner->image) }}" class="d-block w-100" style="height: 500px;" alt="...">
             </div>
         @endforeach
     </div>

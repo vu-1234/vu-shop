@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav me-auto">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
@@ -15,18 +15,55 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="loginLink" href="#">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="logoutLink" href="#" style="display:none;">Logout</a>
-            </li>
+        </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            @guest
+                <li class="nav-item d-flex" style="padding: 0 8px">
+                    <a href=""
+                        class="nav-link position-relative d-flex align-items-center border rounded-1">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="ms-3">{{ count(session('cart', [])) }}</span>
+                    </a>
+                </li>
+
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Đăng Nhập</a>
+                    </li>
+                @endif
+
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Đăng ký</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item d-flex" style="padding: 0 8px">
+                    <a href="" class="nav-link position-relative d-flex align-items-center border rounded-1">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="ms-3"></span>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href=""
+                            onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        </a>
+
+                        <form id="logout-form" action="" method="POST" class="d-none">
+                        </form>
+                    </div>
+                </li>
+            @endguest
         </ul>
     </div>
 </div>
