@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\HomeController as WebHomeController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
@@ -24,12 +25,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-
-Route::get('/', function () {
-    // $admin = User::select()->where('is_admin', 1)->get();
-    // dd($admin);
-    return view('welcome');
-});
 
 Route::group([], function () {
     Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
@@ -92,4 +87,9 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::post('order/{id}', [OrderController::class, 'store'])->name('admin.order.store');
     Route::get('order/{id}/edit', [OrderController::class, 'edit'])->name('admin.order.edit');
     Route::put('order/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+});
+
+Route::group([], function () {
+    // dashboard
+    Route::get('/', [WebHomeController::class, 'index'])->name('web.home');
 });
