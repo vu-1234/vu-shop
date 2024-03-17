@@ -8,7 +8,7 @@ npm install
 php artisan migrate
 
 # step 4
-php artisan serve
+npm run dev
 
 # step 5
-npm run dev
+php artisan serve
