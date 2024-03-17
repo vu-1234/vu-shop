@@ -36,10 +36,34 @@
         </nav>
 
         <main class="pb-5" style="background-color: #e2eaef">
-            @include('component-web.banner-slide')
-            <div class="container">
-                @yield('main')
-            </div>
+            @switch(true)
+                @case(request()->is('/'))
+                    {{-- Banner slide --}}
+                    @include('component-web.banner-slide')
+
+                    {{-- Product --}}
+                    <div class="container">
+                        @include('web.product')
+                    </div>
+                @break
+
+                @case(request()->is('category/*'))
+                    {{-- Banner slide --}}
+                    @include('component-web.banner-slide')
+
+                    {{-- Product --}}
+                    <div class="container">
+                        @include('web.productCategory')
+                    </div>
+                @break
+
+                @case(request()->is('product-detail/*'))
+                    {{-- Main --}}
+                    <main class="container my-4">
+
+                    </main>
+                @break
+            @endswitch
         </main>
 
         {{-- Footer --}}

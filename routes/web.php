@@ -92,4 +92,6 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 Route::group([], function () {
     // dashboard
     Route::get('/', [WebHomeController::class, 'index'])->name('web.home');
+
+    Route::get('/category/{id}', [WebHomeController::class, 'category'])->name('web.category');
 });
