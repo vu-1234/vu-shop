@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\HomeController as WebHomeController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
@@ -94,4 +95,8 @@ Route::group([], function () {
     Route::get('/', [WebHomeController::class, 'index'])->name('web.home');
 
     Route::get('/category/{id}', [WebHomeController::class, 'category'])->name('web.category');
+
+    Route::get('/product-detail/{id}', [WebHomeController::class, 'detail'])->name('web.productDetail');
+
+    Route::post('/add-product-to-cart/{id}', [CartController::class, 'addProductToCart'])->name('web.addProductToCart');
 });

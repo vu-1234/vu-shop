@@ -1,4 +1,4 @@
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 w-100">
     <div class="col mb-3">
         <p class="text-muted ms-5">© 2024 Vu Shop</p>
     </div>

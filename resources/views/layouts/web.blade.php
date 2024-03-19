@@ -31,16 +31,16 @@
 <body>
     <div id="app">
         {{-- Header Navbar --}}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <header class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px -5px 40px -15px rgba(0,0,0,0.7);">
             @include('component-web.header')
-        </nav>
+        </header>
 
         <main class="pb-5" style="background-color: #e2eaef">
+
             @switch(true)
                 @case(request()->is('/'))
                     {{-- Banner slide --}}
                     @include('component-web.banner-slide')
-
                     {{-- Product --}}
                     <div class="container">
                         @include('web.product')
@@ -50,24 +50,23 @@
                 @case(request()->is('category/*'))
                     {{-- Banner slide --}}
                     @include('component-web.banner-slide')
-
                     {{-- Product --}}
                     <div class="container">
-                        @include('web.productCategory')
+                        @include('web.product-category')
                     </div>
                 @break
 
                 @case(request()->is('product-detail/*'))
                     {{-- Main --}}
                     <main class="container my-4">
-
+                        @include('web.product-detail')
                     </main>
                 @break
             @endswitch
         </main>
 
         {{-- Footer --}}
-        <footer class="border-top">
+        <footer class="border-top" style="box-shadow: 0px 5px 40px -15px rgba(0,0,0,0.7);">
             @include('component-web.footer')
         </footer>
     </div>

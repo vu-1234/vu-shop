@@ -43,4 +43,13 @@ class HomeController extends Controller
             'products' => $products
         ]);
     }
+
+    public function detail($id)
+    {
+        $product = Product::find($id);
+
+        return view('layouts.web', [
+            'product' => $product
+        ]);
+    }
 }
