@@ -7,7 +7,6 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -29,6 +28,11 @@ class HomeController extends Controller
         ]);
     }
 
+    public function contact()
+    {
+        return view('layouts.web');
+    }
+
     public function category($id)
     {
         $banners = Banner::all();
@@ -44,12 +48,27 @@ class HomeController extends Controller
         ]);
     }
 
-    public function detail($id)
+    public function search(Request $request)
     {
-        $product = Product::find($id);
+        $banners = Banner::all();
+        $categories = Category::all();
+
+        $query = Product::query();
+
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        if ($request->filled('search_product')) {
+            $query->where('name', 'like', '%' . $request->search_product . '%');
+        }
+
+        $products = $query->get();
 
         return view('layouts.web', [
-            'product' => $product
+            'banners' => $banners,
+            'categories' => $categories,
+            'products' => $products,
         ]);
     }
 }

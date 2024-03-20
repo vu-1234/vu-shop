@@ -14,6 +14,19 @@
     .category-nav-link:hover h4 {
         color: #fff !important;
     }
+    .category-nav-link:active h4 {
+        background-color: #598e03 !important;
+    }
+    .select-category,
+    .btn-search-category {
+        background: #7ac400;
+    }
+    .btn-search-category:hover {
+        background-color: #7ac400;
+    }
+    .btn-search-category:active {
+        background-color: #598e03 !important;
+    }
     .row {
         display: -ms-flexbox;
         display: flex;
@@ -47,7 +60,7 @@
     }
     .card .btn:active {
         color: #fff;
-        background: #598e03;
+        background: #598e03 !important;
     }
     .img-box img {
         height: 250px;
@@ -76,7 +89,22 @@
         </nav>
     </div>
     <div class="col-9">
-        <h3 class="fw-bold">PRODUCT ORVERVIEW</h3>
+        <div class="d-flex justify-content-between">
+            <h3 class="fw-bold mb-0 d-flex align-items-center">PRODUCT ORVERVIEW</h3>
+            <form action="{{ route('web.search') }}" method="GET" style="width: 60%">
+                <div class="input-group" style="width: 100%;">
+                    <select class="form-select select-category text-white p-2" name="category" style="width: 25%;">
+                        <option value="" selected>Chọn danh mục</option>
+                        <!-- Add options for each category -->
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="search_product" style="width: 55%;">
+                    <button class="btn btn-search-category text-white" type="submit" style="width: 17%;">Tìm kiếm</button>
+                </div>
+            </form>
+        </div>
         <div class="row row-cols-3 mt-4">
             @foreach ($products as $product)
                 <form action="{{ route('web.addProductToCart', ['id' => $product->id]) }}" method="post">

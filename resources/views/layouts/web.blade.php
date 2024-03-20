@@ -38,12 +38,18 @@
         <main class="pb-5" style="background-color: #e2eaef">
 
             @switch(true)
-                @case(request()->is('/'))
+                @case(request()->is('/') || request()->is('search*'))
                     {{-- Banner slide --}}
                     @include('component-web.banner-slide')
                     {{-- Product --}}
                     <div class="container">
                         @include('web.product')
+                    </div>
+                @break
+
+                @case(request()->is('contact'))
+                    <div class="container">
+                        @include('web.contact')
                     </div>
                 @break
 

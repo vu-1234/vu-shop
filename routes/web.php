@@ -94,9 +94,14 @@ Route::group([], function () {
     // dashboard
     Route::get('/', [WebHomeController::class, 'index'])->name('web.home');
 
+    // contact
+    Route::get('/contact', [WebHomeController::class, 'contact'])->name('web.contact');
+
     Route::get('/category/{id}', [WebHomeController::class, 'category'])->name('web.category');
 
     Route::get('/product-detail/{id}', [WebHomeController::class, 'detail'])->name('web.productDetail');
 
     Route::post('/add-product-to-cart/{id}', [CartController::class, 'addProductToCart'])->name('web.addProductToCart');
+
+    Route::get('/search', [WebHomeController::class, 'search'])->name('web.search');
 });

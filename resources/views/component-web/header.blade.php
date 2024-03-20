@@ -1,19 +1,22 @@
+<style>
+    .header-nav-link-item {
+        border-bottom: 2px solid #7ac400;
+    }
+</style>
+
 <div class="container">
-    <a class="navbar-brand fw-bold" href="/">VU SHOP</a>
+    <a class="navbar-brand fw-bold" href="/" style="padding: 10px 5px">VU SHOP</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <li class="nav-item {{ request()->is('/') ? 'header-nav-link-item' : '' }}">
+                <a class="nav-link {{ request()->is('/') ? 'active header-nav-link-active' : '' }}" aria-current="page" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+            <li class="nav-item {{ request()->is('contact') ? 'header-nav-link-item' : '' }}">
+                <a class="nav-link {{ request()->is('contact') ? 'active header-nav-link-active' : '' }}" href="/contact">Contact</a>
             </li>
         </ul>
     </div>
