@@ -48,6 +48,15 @@ class HomeController extends Controller
         ]);
     }
 
+    public function detail($id)
+    {
+        $product = Product::find($id);
+
+        return view('layouts.web', [
+            'product' => $product
+        ]);
+    }
+
     public function search(Request $request)
     {
         $banners = Banner::all();
