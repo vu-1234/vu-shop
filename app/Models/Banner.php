@@ -17,6 +17,5 @@ class Banner extends Model
         'description',
         'url',
         'active',
-        'sort_by'
     ];
 }

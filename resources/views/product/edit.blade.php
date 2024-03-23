@@ -18,27 +18,31 @@
                         @method('PUT')
 
                         <div class="form-group ">
-                            <label for="" class="fw-semibold">Name:</label>
+                            <label for="" class="fw-semibold">Tên:</label>
                             <input type="text" name="name" value="{{ $product->name }}" class="form-control">
                         </div>
                         <div class="form-group ">
-                            <label for="" class="fw-semibold">Description:</label>
+                            <label for="" class="fw-semibold">Mô tả:</label>
                             <input type="text" name="description" value="{{ $product->description }}"
                                 class="form-control">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="" class="fw-semibold">banner Image:</label>
+                            <label for="" class="fw-semibold">Ảnh:</label>
                             <input type="file" name="image" class="form-control">
                             <img src="{{ asset('uploads/Product/' . $product->image) }}" width="70px" height="70px"
                                 alt="Image">
                         </div>
                         <div class="form-group ">
-                            <label for="" class="fw-semibold">Price:</label>
+                            <label for="" class="fw-semibold">Giá:</label>
                             <input type="number" name="price" value="{{ $product->price }}" class="form-control">
                         </div>
                         <div class="form-group ">
-                            <label for="" class="fw-semibold">Price Sale:</label>
-                            <input type="number" name="price_sale"value={{ $product->price_sale }} class="form-control">
+                            <label for="" class="fw-semibold">Giá đã giảm:</label>
+                            <input type="number" name="price_sale" value={{ $product->price_sale }} class="form-control">
+                        </div>
+                        <div class="form-group ">
+                            <label for="" class="fw-semibold">Số lượng:</label>
+                            <input type="number" name="quantity" class="form-control" value={{ $product->quantity }}>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">

@@ -68,6 +68,13 @@
                         @include('web.product-detail')
                     </main>
                 @break
+
+                @case(request()->is('login') || request()->is('register'))
+                    {{-- Main --}}
+                    <main class="container my-4">
+                        @include('web.login-register')
+                    </main>
+                @break
             @endswitch
         </main>
 

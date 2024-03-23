@@ -23,10 +23,6 @@
             <label for="" class="fw-semibold">Ảnh:</label>
             <input type="file" name="image" class="form-control">
         </div>
-        <div class="form-group">
-            <label for="menu" class="fw-semibold">Sắp Xếp:</label>
-            <input type="number" name="sort_by" value="1" class="form-control">
-        </div>
 
         <div class="form-group mt-3">
             <label class="fw-semibold">Kích Hoạt:</label>

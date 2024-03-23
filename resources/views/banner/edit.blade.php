@@ -36,10 +36,6 @@
                             <img src="{{ asset('uploads/Banner/' . $banner->image) }}" width="70px" height="70px"
                                 alt="Image">
                         </div>
-                        <div class="form-group">
-                            <label for="menu" class="fw-semibold">Sắp Xếp:</label>
-                            <input type="number" name="sort_by" value="{{ $banner->sort_by }}" class="form-control">
-                        </div>
 
                         <div class="form-group mt-2">
                             <label class="fw-semibold">Kích Hoạt:</label>

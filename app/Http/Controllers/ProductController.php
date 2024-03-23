@@ -44,10 +44,11 @@ class ProductController extends Controller
         if ($product != false) {
             $product = new product;
             $product->name = $request->input('name');
+            $product->category_id = $request->input('category_id');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
             $product->price_sale = $request->input('price_sale');
-            $product->category_id = $request->input('category_id');
+            $product->quantity = $request->input('quantity');
             $product->active = $request->input('active');
             if ($request->hasfile('image')) {
                 $file = $request->file('image');
@@ -100,10 +101,11 @@ class ProductController extends Controller
         if ($product != false) {
             $product = product::find($id);
             $product->name = $request->input('name');
+            $product->category_id = $request->input('category_id');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
             $product->price_sale = $request->input('price_sale');
-            $product->category_id = $request->input('category_id');
+            $product->quantity = $request->input('quantity');
             $product->active = $request->input('active');
             if ($request->hasfile('image')) {
                 $file = $request->file('image');

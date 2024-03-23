@@ -40,25 +40,20 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        $banner = $this->IsVaidSort($request);
-        if ($banner == true) {
-            $banner = new Banner;
-            $banner->name = $request->input('name');
-            $banner->description = $request->input('description');
-            $banner->url = $request->input('url');
-            $banner->active = $request->input('active');
-            $banner->sort_by = $request->input('sort_by');
-            if ($request->hasfile('image')) {
-                $file = $request->file('image');
-                $extention = $file->getClientOriginalExtension();
-                $filename = time() . '.' . $extention;
-                $file->move('uploads/Banner/', $filename);
-                $banner->image = $filename;
-            }
-            $banner->save();
-            return redirect('admin/banner')->with('status', 'banner Image Added Successfully');
+        $banner = new Banner;
+        $banner->name = $request->input('name');
+        $banner->description = $request->input('description');
+        $banner->url = $request->input('url');
+        $banner->active = $request->input('active');
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/Banner/', $filename);
+            $banner->image = $filename;
         }
-        Session::flash('error', 'Vui lòng đúng số thứ tự');
+        $banner->save();
+        return redirect('admin/banner')->with('status', 'banner Image Added Successfully');
         return redirect()->back();
     }
 
@@ -94,25 +89,20 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $banner = $this->IsVaidSort_update($request, $id);
-        if ($banner == true) {
-            $banner = Banner::find($id);
-            $banner->name = $request->input('name');
-            $banner->description = $request->input('description');
-            $banner->url = $request->input('url');
-            $banner->active = $request->input('active');
-            $banner->sort_by = $request->input('sort_by');
-            if ($request->hasfile('image')) {
-                $file = $request->file('image');
-                $extention = $file->getClientOriginalExtension();
-                $filename = time() . '.' . $extention;
-                $file->move('uploads/Banner/', $filename);
-                $banner->image = $filename;
-            }
-            $banner->save();
-            return redirect('admin/banner')->with('status', 'banner Image Added Successfully');
+        $banner = Banner::find($id);
+        $banner->name = $request->input('name');
+        $banner->description = $request->input('description');
+        $banner->url = $request->input('url');
+        $banner->active = $request->input('active');
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/Banner/', $filename);
+            $banner->image = $filename;
         }
-        Session::flash('error', 'Vui lòng đúng số thứ tự');
+        $banner->save();
+        return redirect('admin/banner')->with('status', 'banner Image Added Successfully');
         return redirect()->back();
     }
 
@@ -131,24 +121,5 @@ class BannerController extends Controller
         }
         $banner->delete();
         return redirect()->back()->with('status', 'banner Image Deleted Successfully');
-    }
-    protected function IsVaidSort(Request $request)
-    {
-        $sort = $request->input('sort_by');
-        $count_banner = Banner::select()->where('sort_by', $sort)->count('sort_by');
-        if ($count_banner > 0 || $sort <= 0) {
-            return false;
-        }
-        return true;
-    }
-    protected function IsVaidSort_update(Request $request, $id)
-    {
-        $sort = $request->input('sort_by');
-
-        $count_banner = Banner::select()->where('sort_by', $sort)->where('id', '<>', $id)->count('sort_by');
-        if ($count_banner > 0 || $sort <= 0) {
-            return false;
-        }
-        return true;
     }
 }

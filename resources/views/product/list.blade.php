@@ -21,6 +21,7 @@
                 <th>Ảnh</th>
                 <th>Giá tiền</th>
                 <th>Giá tiền đã giảm</th>
+                <th>Số lượng</th>
                 <th>Trang Thái</th>
                 <th>Chi tiết ảnh</th>
                 <th style="width: 100px">Action</th>
@@ -36,6 +37,7 @@
                     </td>
                     <td>{{ number_format($product->price) }} </td>
                     <td>{{ number_format($product->price_sale) }}</td>
+                    <td>{{ $product->quantity }}</td>
                     <td>{{ $active[$product->active] }}</td>
                     <td>
                         <a href="{{ route('admin.product-image.index', ['id' => $product->id]) }}" class="btn btn-primary btn-sm">Image</a>

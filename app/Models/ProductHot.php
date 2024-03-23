@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductImage extends Model
+class ProductHot extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $tatble = 'product_images';
+    protected $tatble = 'product_hots';
 
-    protected $fillable = ['product_id', 'image'];
+    protected $fillable = ['product_id', 'quantity_sale'];
 
     public function product()
     {

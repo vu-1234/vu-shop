@@ -22,7 +22,6 @@
                 <th>Tên</th>
                 <th>Link</th>
                 <th>Ảnh</th>
-                <th>Thứ tự</th>
                 <th>Trạng Thái</th>
                 <th style="width: 100px">Action</th>
             </tr>
@@ -37,7 +36,6 @@
                         <img src="{{ asset('uploads/Banner/' . $banner->image) }}" height="40px">
 
                     </td>
-                    <td>{{ $banner->sort_by }}</td>
                     <td>{{ $active[$banner->active] }}</td>
 
                     <td>

@@ -11,6 +11,8 @@ use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\HomeController as WebHomeController;
+use App\Http\Controllers\Web\LoginController as WebLoginController;
+use App\Http\Controllers\Web\RegisterController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
@@ -88,6 +90,17 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::post('order/{id}', [OrderController::class, 'store'])->name('admin.order.store');
     Route::get('order/{id}/edit', [OrderController::class, 'edit'])->name('admin.order.edit');
     Route::put('order/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+});
+
+
+
+Route::group([], function () {
+    Route::get('/login', [WebLoginController::class, 'showLoginForm'])->name('web.login');
+    Route::post('/login-post', [WebLoginController::class, 'login'])->name('web.login.post');
+    Route::post('/logout', [WebLoginController::class, 'logout'])->name('web.logout');
+
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('web.register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('web.register.post');
 });
 
 Route::group([], function () {

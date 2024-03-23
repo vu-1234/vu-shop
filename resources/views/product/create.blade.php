@@ -7,24 +7,29 @@
         @csrf
 
         <div class="form-group ">
-            <label for="" class="fw-semibold">Name:</label>
+            <label for="" class="fw-semibold">Tên:</label>
             <input type="text" name="name" class="form-control">
         </div>
         <div class="form-group ">
-            <label for="" class="fw-semibold">Description:</label>
+            <label for="" class="fw-semibold">Mô tả:</label>
             <textarea name="description" class="form-control"></textarea>
         </div>
         <div class="form-group ">
-            <label for="" class="fw-semibold">Image:</label>
+            <label for="" class="fw-semibold">Ảnh:</label>
             <input type="file" name="image" class="form-control">
         </div>
         <div class="form-group ">
-            <label for="" class="fw-semibold">Price:</label>
+            <label for="" class="fw-semibold">Giá:</label>
             <input type="number" name="price" class="form-control">
         </div>
         <div class="form-group ">
-            <label for="" class="fw-semibold">Price Sale:</label>
+            <label for="" class="fw-semibold">Giá đã giảm:</label>
             <input type="number" name="price_sale" class="form-control">
+        </div>
+
+        <div class="form-group ">
+            <label for="" class="fw-semibold">Số lượng:</label>
+            <input type="number" name="quantity" class="form-control">
         </div>
 
         <div class="col-md-6">
@@ -37,6 +42,7 @@
                 </select>
             </div>
         </div>
+
         <div class="form-group mt-2">
             <label class="fw-semibold">Kích Hoạt:</label>
             <div class="custom-control custom-radio ms-3">
@@ -48,8 +54,6 @@
                 <input class="custom-control-input" value="0" type="radio" id="no_active" name="active">
                 <label for="no_active" class="custom-control-label">Không</label>
             </div>
-        </div>
-
         </div>
 
         <div class="card-footer mt-3">
