@@ -99,8 +99,8 @@ Route::group([], function () {
     Route::post('/login-post', [WebLoginController::class, 'login'])->name('web.login.post');
     Route::post('/logout', [WebLoginController::class, 'logout'])->name('web.logout');
 
-    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('web.register');
-    Route::post('/register', [RegisterController::class, 'register'])->name('web.register.post');
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [RegisterController::class, 'create'])->name('web.register.post');
 });
 
 Route::group([], function () {
@@ -115,6 +115,8 @@ Route::group([], function () {
     Route::get('/product-detail/{id}', [WebHomeController::class, 'detail'])->name('web.productDetail');
 
     Route::post('/add-product-to-cart/{id}', [CartController::class, 'addProductToCart'])->name('web.addProductToCart');
+
+    Route::get('/cart', [CartController::class, 'showProduct'])->name('web.showProduct');
 
     Route::get('/search', [WebHomeController::class, 'search'])->name('web.search');
 });

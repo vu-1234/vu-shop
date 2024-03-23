@@ -25,7 +25,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item d-flex" style="padding: 0 8px">
-                <a href="" class="nav-link position-relative d-flex align-items-center border rounded-1">
+                <a href="{{ route('web.showProduct') }}" class="nav-link position-relative d-flex align-items-center border rounded-1">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="ms-3">{{ count(session('cart', [])) }}</span>
                 </a>
@@ -37,7 +37,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('web.register') }}">Đăng ký</a>
+                    <a class="nav-link" href="{{ route('register') }}">Đăng ký</a>
                 </li>
             @else
                 <li class="nav-item dropdown">

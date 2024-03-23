@@ -58,7 +58,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'string', 'min:8']
+            'password_confirmation' => ['required', 'same:password'],
+            'phone' => ['required', 'string', 'min:8'],
+            'gender' => ['required'],
+            'date' => ['required'],
+            'district' => ['required'],
+            'ward' => ['required'],
+            'province' => ['required'],
+            'address' => ['required'],
         ]);
     }
 
@@ -68,14 +75,33 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'password_show' => $data['password'],
-            'phone' => $data['phone']
+        // Validate the incoming request data
+        $validator = $this->validator($request->all());
+
+        // Check if the validation fails
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput(); // Keeps the old input data
+        }
+
+        // If validation passes, create the new user
+        User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'phone' => $request['phone'],
+            'gender' => $request['gender'],
+            'date' => $request['date'],
+            'district' => $request['district'],
+            'ward' => $request['ward'],
+            'province' => $request['province'],
+            'address' => $request['address'],
         ]);
+
+        // Redirect back with success message
+        return back()->with('success', 'Đăng ký thành công');
     }
 }

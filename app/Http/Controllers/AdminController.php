@@ -39,7 +39,7 @@ class AdminController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.admin.index')->with('success', 'Tạo admin thành công!');
     }
 
     /**
@@ -74,7 +74,7 @@ class AdminController extends Controller
 
         $admin->update();
 
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.admin.index')->with('success', 'Chỉnh sửa admin thành công!');
     }
 
     /**
@@ -85,6 +85,6 @@ class AdminController extends Controller
         $admin = Admin::find($id);
         $admin->delete();
 
-        return redirect()->route('admin.admin.index');
+        return redirect()->route('admin.admin.index')->with('success', 'Xóa admin thành công!');
     }
 }

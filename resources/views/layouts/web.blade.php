@@ -75,6 +75,13 @@
                         @include('web.login-register')
                     </main>
                 @break
+
+                @case(request()->is('cart'))
+                    {{-- Main --}}
+                    <main class="container my-4">
+                        @include('web.cart')
+                    </main>
+                @break
             @endswitch
         </main>
 
@@ -84,6 +91,17 @@
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (session('success'))
+                toastr.success("{{ session('success') }}");
+            @endif
+        });
+    </script>
 
 </body>
 
