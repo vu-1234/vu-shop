@@ -8,25 +8,32 @@
         border-top-right-radius: 10px;
         padding: 5px 0;
     }
+
     .category-nav-link:hover h4 {
         background: #7ac400;
     }
+
     .category-nav-link:hover h4 {
         color: #fff !important;
     }
+
     .category-nav-link:active h4 {
         background-color: #598e03 !important;
     }
+
     .select-category,
     .btn-search-category {
         background: #7ac400;
     }
+
     .btn-search-category:hover {
         background-color: #7ac400;
     }
+
     .btn-search-category:active {
         background-color: #598e03 !important;
     }
+
     .row {
         display: -ms-flexbox;
         display: flex;
@@ -35,6 +42,7 @@
         margin-right: -15px;
         margin-left: -15px;
     }
+
     .card {
         background: #fff;
         border-radius: 15px;
@@ -42,6 +50,7 @@
         position: relative;
         box-shadow: 1px 6px 23px -9px rgba(0, 0, 0, 0.75);
     }
+
     .card .btn {
         color: #7ac400;
         font-size: 11px;
@@ -54,14 +63,17 @@
         line-height: 16px;
         border-radius: 20px;
     }
+
     .card .btn:hover {
         color: #fff;
         background: #7ac400;
     }
+
     .card .btn:active {
         color: #fff;
         background: #598e03 !important;
     }
+
     .img-box img {
         height: 250px;
     }
@@ -100,8 +112,10 @@
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="search_product" style="width: 55%;">
-                    <button class="btn btn-search-category text-white" type="submit" style="width: 17%;">Tìm kiếm</button>
+                    <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="search_product"
+                        style="width: 55%;">
+                    <button class="btn btn-search-category text-white" type="submit" style="width: 17%;">Tìm
+                        kiếm</button>
                 </div>
             </form>
         </div>
@@ -109,8 +123,7 @@
             @foreach ($products as $product)
                 <form action="{{ route('web.addProductToCart', ['id' => $product->id]) }}" method="post">
                     @csrf
-                    <a href=" {{ route('web.productDetail', ['id' => $product->id]) }}"
-                        class="text-decoration-none">
+                    <a href=" {{ route('web.productDetail', ['id' => $product->id]) }}" class="text-decoration-none">
                         <div class="card mb-4 border-0" style="box-shadow: 1px 6px 23px -9px rgba(0, 0, 0, 0.75);">
                             <div class="card-body text-center">
                                 <img src="{{ asset('/uploads/product/' . $product->image) }}" class="card-img-top"
@@ -131,5 +144,77 @@
                 </form>
             @endforeach
         </div>
+
+        @if (request()->is('/'))
+            <hr>
+
+            <div class="d-flex justify-content-between">
+                <h3 class="fw-bold mb-0 d-flex align-items-center">PRODUCT HOT</h3>
+            </div>
+            <div class="row row-cols-3 mt-4">
+                @foreach ($productHots as $productHot)
+                    @php
+                        $productHot = $productHot->product;
+                    @endphp
+                    <form action="{{ route('web.addProductToCart', ['id' => $productHot->id]) }}" method="post">
+                        @csrf
+                        <a href=" {{ route('web.productDetail', ['id' => $productHot->id]) }}"
+                            class="text-decoration-none">
+                            <div class="card mb-4 border-0" style="box-shadow: 1px 6px 23px -9px rgba(0, 0, 0, 0.75);">
+                                <div class="card-body text-center">
+                                    <img src="{{ asset('/uploads/product/' . $productHot->image) }}"
+                                        class="card-img-top" style="height: 200px" alt="...">
+                                    <h5 class="my-3 fw-bold">
+                                        {{ $productHot->name }}
+                                    </h5>
+                                    <div class="text-decoration-line-through">
+                                        {{ number_format($productHot->price) }} VND
+                                    </div>
+                                    <div>
+                                        {{ number_format($productHot->price_sale) }} VND
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary mt-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </a>
+                    </form>
+                @endforeach
+            </div>
+        @endif
+
+
+        @if (request()->is('/'))
+            <hr>
+
+            <div class="d-flex justify-content-between">
+                <h3 class="fw-bold mb-0 d-flex align-items-center">PRODUCT NEW</h3>
+            </div>
+            <div class="row row-cols-3 mt-4">
+                @foreach ($productNews as $productNew)
+                    <form action="{{ route('web.addProductToCart', ['id' => $productNew->id]) }}" method="post">
+                        @csrf
+                        <a href=" {{ route('web.productDetail', ['id' => $productNew->id]) }}"
+                            class="text-decoration-none">
+                            <div class="card mb-4 border-0" style="box-shadow: 1px 6px 23px -9px rgba(0, 0, 0, 0.75);">
+                                <div class="card-body text-center">
+                                    <img src="{{ asset('/uploads/product/' . $productNew->image) }}"
+                                        class="card-img-top" style="height: 200px" alt="...">
+                                    <h5 class="my-3 fw-bold">
+                                        {{ $productNew->name }}
+                                    </h5>
+                                    <div class="text-decoration-line-through">
+                                        {{ number_format($productNew->price) }} VND
+                                    </div>
+                                    <div>
+                                        {{ number_format($productNew->price_sale) }} VND
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary mt-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </a>
+                    </form>
+                @endforeach
+            </div>
+        @endif
     </div>
 </div>

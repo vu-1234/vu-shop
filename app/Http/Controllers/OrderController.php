@@ -44,17 +44,30 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
-        //
+        $order = Order::find($id);
+
+        return view('order.order-detail', [
+            'order' => $order
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $request->validate([
+            'status' => 'required|integer|in:1,2,3,4',
+        ]);
+
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect()->route('admin.order.index')->with('success', 'Order status updated successfully.');
     }
 
     /**

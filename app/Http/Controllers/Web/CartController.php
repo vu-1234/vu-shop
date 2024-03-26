@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -16,7 +17,7 @@ class CartController extends Controller
         $cart[] = $product;
         session(['cart' => $cart]);
 
-        return redirect()->route('web.home')->with('success', 'Thêm sản phẩm vào cart thành công');
+        return redirect()->route('web.home')->with('success', 'Thêm sản phẩm vào cart thành công!');
     }
 
     public function showProduct()
@@ -72,5 +73,59 @@ class CartController extends Controller
         return view('layouts.web', [
             'productDetails' => $productDetails,
         ]);
+    }
+
+    public function updateCart(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+
+        // Find the product in the cart
+        $key = array_search($id, array_column($cart, 'id'));
+
+        // If the product is found
+        if ($key !== false) {
+            // Get the product object
+            $product = $cart[$key];
+
+            // Clone the product object to avoid indirect modification error
+            $product = clone $product;
+
+            // Increment or decrement the quantity based on the button clicked
+            if ($request->has('increment')) {
+                $product->quantity_choose++;
+            } elseif ($request->has('decrement')) {
+                $product->quantity_choose--;
+            }
+
+            // Update the product in the cart
+            $cart[$key] = $product;
+
+            // Update the session cart
+            session(['cart' => $cart]);
+        }
+
+        return redirect()->back()->with('success', 'Chỉnh sửa số lượng thành công!');
+    }
+
+    public function deleteFromCart(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+
+        // Find the product index in the cart
+        $key = array_search($id, array_column($cart, 'id'));
+
+        // If the product is found
+        if ($key !== false) {
+            // Remove the product from the cart
+            unset($cart[$key]);
+
+            // Reset array keys
+            $cart = array_values($cart);
+
+            // Update the session cart
+            session(['cart' => $cart]);
+        }
+
+        return redirect()->back()->with('success', 'Xóa sản phẩm thành công!');
     }
 }

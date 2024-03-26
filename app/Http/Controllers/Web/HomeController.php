@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductHot;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,11 +22,15 @@ class HomeController extends Controller
         $banners = Banner::all();
         $categories = Category::all();
         $products = Product::all();
+        $productsHots = ProductHot::where('quantity_sale', '>=', 5)->with('product')->get();
+        $productNews = Product::whereDate('created_at', '>=', Carbon::now()->subDays(7))->get();
 
         return view('layouts.web', [
             'banners' => $banners,
             'categories' => $categories,
-            'products' => $products
+            'products' => $products,
+            'productHots' => $productsHots,
+            'productNews' => $productNews
         ]);
     }
 

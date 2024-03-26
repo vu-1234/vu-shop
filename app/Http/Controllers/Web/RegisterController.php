@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -77,31 +78,25 @@ class RegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        // Validate the incoming request data
-        $validator = $this->validator($request->all());
+        $userController = new UserController();
 
-        // Check if the validation fails
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput(); // Keeps the old input data
-        }
-
-        // If validation passes, create the new user
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'phone' => $request['phone'],
-            'gender' => $request['gender'],
-            'date' => $request['date'],
-            'district' => $request['district'],
-            'ward' => $request['ward'],
-            'province' => $request['province'],
-            'address' => $request['address'],
-        ]);
+        $userController->store($request);
 
         // Redirect back with success message
         return back()->with('success', 'Đăng ký thành công');
+    }
+
+    public function editInfo()
+    {
+        return view('layouts.web')->with('user', auth()->user());
+    }
+
+    public function updateUser(Request $request, int $id)
+    {
+        $userController = new UserController();
+
+        $userController->update($request, $id);
+
+        return redirect()->route('web.home')->with('success', 'Chỉnh sửa thành công');
     }
 }

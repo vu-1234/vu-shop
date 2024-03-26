@@ -94,6 +94,12 @@
                         Orders
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ strpos(url()->current(), 'admin/statistical') !== false ? 'active' : '' }}" href="{{ route('admin.statistical.index') }}">
+                        <i class="fa-solid fa-chart-simple me-2"></i>
+                        Statisticals
+                    </a>
+                </li>
             </ul>
         </div>
 

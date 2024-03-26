@@ -82,6 +82,13 @@
                         @include('web.cart')
                     </main>
                 @break
+
+                @case(request()->is('edit-info'))
+                    {{-- Main --}}
+                    <main class="container my-4">
+                        @include('web.edit-info')
+                    </main>
+                @break
             @endswitch
         </main>
 
@@ -99,6 +106,10 @@
         document.addEventListener("DOMContentLoaded", function() {
             @if (session('success'))
                 toastr.success("{{ session('success') }}");
+            @endif
+
+            @if (session('error'))
+                toastr.error("{{ session('error') }}");
             @endif
         });
     </script>

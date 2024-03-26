@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\StatisticalController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
@@ -88,18 +90,21 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     // order
     Route::get('order', [OrderController::class, 'index'])->name('admin.order.index');
     Route::post('order/{id}', [OrderController::class, 'store'])->name('admin.order.store');
-    Route::get('order/{id}/edit', [OrderController::class, 'edit'])->name('admin.order.edit');
+    Route::get('order-detail/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
     Route::put('order/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+
+    // statistical
+    Route::get('statistical', [StatisticalController::class, 'index'])->name('admin.statistical.index');
 });
 
 
-
+// web
 Route::group([], function () {
     Route::get('/login', [WebLoginController::class, 'showLoginForm'])->name('web.login');
     Route::post('/login-post', [WebLoginController::class, 'login'])->name('web.login.post');
     Route::post('/logout', [WebLoginController::class, 'logout'])->name('web.logout');
 
-    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::get('/register', [WebLoginController::class, 'showLoginForm'])->name('web.login');
     Route::post('/register', [RegisterController::class, 'create'])->name('web.register.post');
 });
 
@@ -117,6 +122,13 @@ Route::group([], function () {
     Route::post('/add-product-to-cart/{id}', [CartController::class, 'addProductToCart'])->name('web.addProductToCart');
 
     Route::get('/cart', [CartController::class, 'showProduct'])->name('web.showProduct');
+    Route::post('/update-cart/{id}', [CartController::class, 'updateCart'])->name('web.update.cart');
+    Route::delete('/delete-cart/{id}', [CartController::class, 'deleteFromCart'])->name('web.delete.cart');
 
     Route::get('/search', [WebHomeController::class, 'search'])->name('web.search');
+
+    Route::get('/edit-info', [RegisterController::class, 'editInfo'])->name('web.edit-info');
+    Route::put('/edit-info-update/{id}', [RegisterController::class, 'updateUser'])->name('web.edit-info-update.post');
+
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('web.checkout');
 });

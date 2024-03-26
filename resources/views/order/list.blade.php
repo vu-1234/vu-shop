@@ -3,8 +3,10 @@
     @php
 
         $status = [
-            0 => 'Panding',
-            1 => 'Done',
+            1 => 'Chưa giải quyết',
+            2 => 'Đang xử lý',
+            3 => 'Hoàn thành',
+            4 => 'Đã hủy',
         ];
 
     @endphp
@@ -30,7 +32,7 @@
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->user->name }}</td>
                     <td>{{ $order->note }}</td>
-                    <td>{{ number_format($order->total_price) }}</td>
+                    <td>{{ number_format($order->total_price) }} VND</td>
                     <td>{{ $status[$order->status] }}</td>
                     <td>{{ $order->created_at }}</td>
                     <td>

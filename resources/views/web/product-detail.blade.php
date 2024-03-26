@@ -36,6 +36,7 @@
 
 <div class="mt-4">
     <form action="{{ route('web.addProductToCart', ['id' => $product->id]) }}" method="post">
+        @csrf
         <h3 class="fw-bold">{{ $product->name }} Detail</h3>
         <div class="row mt-4">
             <div class="col-8">

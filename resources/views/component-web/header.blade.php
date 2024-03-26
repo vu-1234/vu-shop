@@ -14,18 +14,19 @@
         <ul class="navbar-nav me-auto">
             <li class="nav-item {{ request()->is('/') ? 'header-nav-link-item' : '' }}">
                 <a class="nav-link {{ request()->is('/') ? 'active header-nav-link-active' : '' }}" aria-current="page"
-                    href="/">Home</a>
+                    href="/">Trang chủ</a>
             </li>
             <li class="nav-item {{ request()->is('contact') ? 'header-nav-link-item' : '' }}">
                 <a class="nav-link {{ request()->is('contact') ? 'active header-nav-link-active' : '' }}"
-                    href="/contact">Contact</a>
+                    href="/contact">Liên hệ</a>
             </li>
         </ul>
     </div>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item d-flex" style="padding: 0 8px">
-                <a href="{{ route('web.showProduct') }}" class="nav-link position-relative d-flex align-items-center border rounded-1">
+                <a href="{{ route('web.showProduct') }}"
+                    class="nav-link position-relative d-flex align-items-center border rounded-1">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="ms-3">{{ count(session('cart', [])) }}</span>
                 </a>
@@ -37,7 +38,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">Đăng ký</a>
+                    <a class="nav-link" href="{{ route('web.login') }}">Đăng ký</a>
                 </li>
             @else
                 <li class="nav-item dropdown">
@@ -47,6 +48,9 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('web.edit-info') }}" data-bs-target="#userInfoModal">
+                            Thông tin người dùng
+                        </a>
                         <a class="dropdown-item" href="{{ route('web.logout') }}"
                             onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
