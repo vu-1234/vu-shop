@@ -40,7 +40,7 @@
                                 <button class="btn btn-outline-secondary" type="submit" name="decrement">-</button>
                                 <input type="number" class="form-control text-center"
                                     value="{{ $productDetail['quantity_choose'] }}" name="quantity_choose"
-                                    min="1" max="{{ $productDetail['quantity'] }}" style="width: 70px;">
+                                    min="1" max="{{ $productDetail['quantity'] }}" style="width: 70px;" disabled>
                                 <button class="btn btn-outline-secondary" type="submit" name="increment">+</button>
                             </div>
                         </form>
