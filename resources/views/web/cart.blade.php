@@ -1,5 +1,5 @@
 @php
-    $totalPrice = 0; // Initialize total price variable
+    $totalPrice = 0;
 @endphp
 
 <h2 class="fw-bold text-center">
