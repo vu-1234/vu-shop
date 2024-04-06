@@ -55,7 +55,7 @@
                 <div class="mt-2 d-flex fw-bold">
                     Price:&nbsp;
                     <p class="text-decoration-line-through mb-0">
-                        {{ number_format($product->price_sale) }} VND
+                        {{ number_format($product->price) }} VND
                     </p>
                 </div>
                 <div>
